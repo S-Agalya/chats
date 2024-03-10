@@ -31,7 +31,7 @@
 // var json_file=JSON.stringify(json_arr,null,2)
 // writeFileSync('json',json_file)
 // console.log("success")
-
+//------------------------------------------------------------------------------------------------------------------
 //read a file
 //array of strings
 //return date from the string 
@@ -49,7 +49,7 @@
 // json.parse=> converts json string to js obj
 // json.stringyfy=>converts js obj to json file
 
-
+//----------------------------------------------------------------------------------------------------------------------
 
 import { readFileSync, writeFileSync } from 'fs';
 
@@ -58,12 +58,12 @@ const lines = chat.split('\n');
 
 const datetime = lines.map(line => {
     const parts = line.split(',');
-    const dateAndTime = parts[0] ? parts[0].trim().split(' - ') : ''; // Split date and time
-    const date = dateAndTime[0];
+    const dateandtime = parts[0] ? parts[0].trim().split(' - ') : ''; // Split date and time
+    const date = dateandtime[0];
     const time = parts[1]? parts[1].split(' - ')[0].trim():'' 
     
-    const phoneNumberMatches = line.match(/\+\d{1,3}\s?\(?\d+\)?[\s-]?\d+[\s-]?\d+/g);
-    const ph = phoneNumberMatches ? phoneNumberMatches[0] : "not specified";
+    const phonenumbermatches = line.match(/\+\d{1,3}\s?\(?\d+\)?[\s-]?\d+[\s-]?\d+/g);
+    const ph = phonenumbermatches ? phonenumbermatches[0] : "not specified";
 
     const text = parts.slice(1).join(',').replace(/\+\d{1,3}\s?\(?\d+\)?[\s-]?\d+[\s-]?\d+/g, '').trim();
     const time_pattern=text.replace(/(\d{2}:\d{2})/,'')
