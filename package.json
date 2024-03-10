@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "jest": "^29.7.0",
+    "phone-number": "^1.0.2"
+  },
+  "type": "module",
+  "scripts": {
+    "test": "node_modules/.bin/jest"
+  }
+}
