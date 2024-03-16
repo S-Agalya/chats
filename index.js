@@ -1,56 +1,49 @@
-// import { readFileSync, writeFileSync } from 'fs';
+// import { readFileSync } from 'fs';
 
-// const chat = readFileSync('./sample.txt', 'UTF-8');
-// var lines = chat.split('\n');
-//  const datetime=lines.map(datetime=>{
-//     var parts=datetime.split(',')
-//     var date=parts[0].trim()
+// function chatsplitting() {
+// var all_chats=[] //stores all the splitted chats
+// var chat = readFileSync("./sample.txt", "utf-8").split(/\r?\n/);
+// for(var i=0;i<chat.length;i++){
+//     var splitted_chat=chat[i].split(/ - |: /)
+//     all_chats.push(splitted_chat)
+//     // console.log(splitted_chat)
     
-//     const time = parts[1].split(' - ')[0].trim();
-//     const text=parts[1].split('-')[1].trim()
-// const phoneNumberMatches = datetime.match(/\+\d{1,3}\s?\(?\d+\)?[\s-]?\d+[\s-]?\d+/g);
-//        var ph=phoneNumberMatches ? phoneNumberMatches[0] : "not specified";
-//       const clean_test=text.replace(/\+\d{2}\s\d{5}\s\d{5}/, '').trim()
-//     var timestamp=date +' '+ time
-//     return {timestamp,ph,clean_test}
-//  })
-// console.log(datetime)
+// }return all_chats
+// }
+// function getting_ts_ph_text(splitted_chat1){
+//     var result=[]
+//     for(var i=0;i<splitted_chat1.length;i++){
+//         var inner_arr=splitted_chat1[i]  //contains the array inside the array(str1) .i.e [[str1][str2]]
+//         var ts=inner_arr[0]  //for timestamp
+//         var contact=inner_arr[1]  
+//         // console.log({ts,contact})
+//         result.push({ts,contact})
+//     }return result 
+
+ 
+// }
+
+// var inputsplit=chatsplitting()
+// var splitted_chat1=getting_ts_ph_text(inputsplit)
+// console.log(splitted_chat1)
 
 
-//another way coz does not support for the datas in whatsappchats.txt
 
-
-
-
-import { readFileSync, writeFileSync } from 'fs';
-
-const chat = readFileSync('./sample.txt', 'UTF-8');
-const lines = chat.split('\n');
-
-const datetime = lines.map(line => {
-    const parts = line.split(',');
-    const dateandtime = parts[0] ? parts[0].trim().split(' - ') : ''; // Split date and time
-    const date = dateandtime[0];
-    const time = parts[1]? parts[1].split(' - ')[0].trim():'' 
+import { readFileSync } from 'fs';
+function whatsappchat() {
+var chat = readFileSync("./sample.txt", "utf-8").split(/\r?\n/);
+for(var i=0;i<chat.length;i++){
+    var splitted_chat=chat[i].split(/ - |: /)   //splitting based on - and :
+    var ts=splitted_chat[0]
+    var contact=splitted_chat[1]
     
-    const phonenumbermatches = line.match(/\+\d{1,3}\s?\(?\d+\)?[\s-]?\d+[\s-]?\d+/g);
-    const ph = phonenumbermatches ? phonenumbermatches[0] : "not specified";
-
-    const text = parts.slice(1).join(',').replace(/\+\d{1,3}\s?\(?\d+\)?[\s-]?\d+[\s-]?\d+/g, '').trim();
-    const time_pattern=text.replace(/(\d{2}:\d{2})/,'')
+    if(contact && contact.startsWith('-') && contact.endsWith(':') && contact.length==14 ){
+        return contact
+        
+    }
    
+     console.log({ts,contact})
 
-    const timestamp = date+" " + time; 
-
-    return { timestamp, ph, clean_text: time_pattern };
-});
-
-console.log(datetime);
-const jsonFile = JSON.stringify(datetime, null, 2);
-writeFileSync('samplejson', jsonFile);
-console.log("success");
-
-
-
-
+    
+}}whatsappchat()
 

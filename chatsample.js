@@ -51,32 +51,32 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 
-import { readFileSync, writeFileSync } from 'fs';
+// import { readFileSync, writeFileSync } from 'fs';
 
-const chat = readFileSync('../chats/whatsappchats.txt', 'UTF-8');
-const lines = chat.split('\n');
+// const chat = readFileSync('../chats/whatsappchats.txt', 'UTF-8');
+// const lines = chat.split('\n');
 
-const datetime = lines.map(line => {
-    const parts = line.split(',');
-    const dateandtime = parts[0] ? parts[0].trim().split(' - ') : ''; // Split date and time
-    const date = dateandtime[0];
-    const time = parts[1]? parts[1].split(' - ')[0].trim():'' 
+// const datetime = lines.map(line => {
+//     const parts = line.split(',');
+//     const dateandtime = parts[0] ? parts[0].trim().split(' - ') : ''; // Split date and time
+//     const date = dateandtime[0];
+//     const time = parts[1]? parts[1].split(' - ')[0].trim():'' 
     
-    const phonenumbermatches = line.match(/\+\d{1,3}\s?\(?\d+\)?[\s-]?\d+[\s-]?\d+/g);
-    const ph = phonenumbermatches ? phonenumbermatches[0] : "not specified";
+//     const phonenumbermatches = line.match(/\+\d{1,3}\s?\(?\d+\)?[\s-]?\d+[\s-]?\d+/g);
+//     const ph = phonenumbermatches ? phonenumbermatches[0] : "not specified";
 
-    const text = parts.slice(1).join(',').replace(/\+\d{1,3}\s?\(?\d+\)?[\s-]?\d+[\s-]?\d+/g, '').trim();
-    const time_pattern=text.replace(/(\d{2}:\d{2})/,'')
+//     const text = parts.slice(1).join(',').replace(/\+\d{1,3}\s?\(?\d+\)?[\s-]?\d+[\s-]?\d+/g, '').trim();
+//     const time_pattern=text.replace(/(\d{2}:\d{2})/,'')
    
 
-    const timestamp = date+" " + time; 
+//     const timestamp = date+" " + time; 
 
-    return { timestamp, ph, clean_text: time_pattern };
-});
+//     return { timestamp, ph, clean_text: time_pattern };
+// });
 
-console.log(datetime);
-const jsonFile = JSON.stringify(datetime, null, 2);
-writeFileSync('json', jsonFile);
-console.log("success");
+// console.log(datetime);
+// const jsonFile = JSON.stringify(datetime, null, 2);
+// writeFileSync('json', jsonFile);
+// console.log("success");
 
 
