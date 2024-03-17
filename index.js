@@ -42,12 +42,12 @@
 
 
 //sample 1
-import {readFileSync} from 'fs'
+import {readFileSync,writeFileSync} from 'fs'
 function readchatdata(){
   var chat=readFileSync('sample.txt','utf-8').split(/\r?\n/)
   return chat
 }
-function split_the_chats(){
+function split_find_ts_contact_text(){
   var json_arr = [];
   for(var i=0;i<all_chats.length;i++){
     var splits=all_chats[i].split(/ - |: /)
@@ -77,13 +77,19 @@ function split_the_chats(){
 
     }
 }
-
 // console.log(json_arr);
    return json_arr
   } 
+
+  function creating_json(){
+    var json=split_find_ts_contact_text()
+    const json_file=JSON.stringify(json,null,2)
+    return writeFileSync('jsonformat', json_file);
+  }
     var all_chats=readchatdata()
-    var finding_ts_contact_messages=split_the_chats(all_chats)
-    console.log(finding_ts_contact_messages)
+    var ts_contact_text=split_find_ts_contact_text(all_chats)
+    creating_json(ts_contact_text)
+    console.log("json created")
 
 //main prgm
 
