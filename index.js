@@ -41,7 +41,7 @@
 
 
 
-//sample
+//sample 1
 import {readFileSync} from 'fs'
 function readchatdata(){
   var chat=readFileSync('sample.txt','utf-8').split(/\r?\n/)
