@@ -1,16 +1,24 @@
 {
-  "dependencies": {
-    "jest": "^29.7.0"
-  },
+  "name": "nodejsjesttemplate",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "test": "jest"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
-  "name": "chats",
-  "version": "1.0.0",
-  "main": "index.js",
-  "devDependencies": {},
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  "devDependencies": {
+    "jest": "^27.0.0"
+  },
+  "jest": {
+    "transform": {},
+    "testMatch": [
+      "<rootDir>/src/**/*.test.js"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/**/*.test.js"
+    ],
+    "coverageDirectory": "./coverage"
+  }
 }
+
